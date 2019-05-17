@@ -2,7 +2,7 @@ program DB1
 	
 	implicit none
 	integer::i,len
-	integer,dimension(1000),allocatable :: a
+	integer,dimension(0:999) :: a
 	
 	len =1000
 	

@@ -2,7 +2,7 @@ program DB3
 
 	implicit none
 	integer::i,j,len
-	double precision,dimension(20,20) :: a  
+	double precision,dimension(0:19,0:19) :: a  
 	len=20
 	
 	do i=0, len-1

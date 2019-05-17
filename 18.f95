@@ -1,8 +1,8 @@
 program DRB18
 
 	implicit none
-	integer,dimension(1000) :: input
-	integer,dimension(1000) :: output
+	integer,dimension(0:999) :: input
+	integer,dimension(0:999) :: output
 
 	integer::i,inLen,outLen
 	inLen = 1000

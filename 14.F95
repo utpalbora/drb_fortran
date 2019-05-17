@@ -2,11 +2,10 @@ program DRB14
 
 	implicit none
 	integer::i,j,n,m
-	double precision,dimension(:,:), allocatable:: b
+	double precision,dimension(0:99,0:99):: b
 	n=100
 	m=100
-	allocate(b(n,m))
-
+	
 	!$OMP PARALLEL DO private(j)	
 	do i=1,n-1
 		do j=0,m-1

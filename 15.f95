@@ -1,8 +1,9 @@
+ALLOCATE --> Array POINTER --> No SCOP
 program DRB15
 
 	implicit none 
 	integer::i,j,n,m,len,number
-	double precision,dimension(:,:), allocatable:: b
+	double precision,dimension(0:99,0:99):: b
 	CHARACTER(LEN=20) :: buffer
 	
 	len =100
@@ -16,7 +17,6 @@ program DRB15
 	end if
 	n=len
 	m=len
-	allocate(b(n,m))
 
 	!$OMP PARALLEL DO private(j)	
 	do i=1,n-1
@@ -25,7 +25,5 @@ program DRB15
 		end do
 	end do
 	!$OMP end PARALLEL do
-	
-	print *,"b[50][50]=",b(50,50)	
 			
 end program DRB15

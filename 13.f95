@@ -2,9 +2,8 @@ program DB13
 
 	implicit none
 	integer::i,error,b,len
-	integer,dimension(:),allocatable::a
+	integer,dimension(0:999)::a
 	len=1000	
-	allocate(a(0:len-1))
 	b=5
 	
 	do i=0,len-1 

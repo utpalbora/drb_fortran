@@ -1,8 +1,9 @@
+ALLOCATE --> Array POINTER --> No SCOP
 program DB12
 
 	implicit none
 	integer::i,len,number,numNodes,numNodes2
-	integer,dimension(:),allocatable::x	
+	integer,dimension(0:99)::x	
 	CHARACTER(LEN=20) :: buffer
 	
 	len = 100
@@ -17,7 +18,6 @@ program DB12
 	
 	numNodes=len
 	numNodes2=0
-	allocate(x(len))
 	
 	do i=0,len-1
 	

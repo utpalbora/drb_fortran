@@ -1,8 +1,8 @@
+ALLOCATE --> Array POINTER --> No SCOP
 program DB1
-	
 	implicit none
 	integer::i,len,number
-	integer,dimension(:),allocatable :: a
+	integer,dimension(0:999) :: a
 	CHARACTER(LEN=20) :: buffer
 	
 	len =1000
@@ -15,8 +15,6 @@ program DB1
 		len = number
 	end if
 	
-
-	allocate(a(len))
         do i=0, len-1
                 a(i) = i
         end do
@@ -26,7 +24,8 @@ program DB1
         do i=0, len-2
         	a(i)=a(i+1)+1
         end do
-        !$OMP end PARALLEL do 
-        print '("a[500]=",I0)',a(500)
+
+	!$OMP end PARALLEL do 
+        print '("a[999]=",I0)',a(999)
          
 end program DB1

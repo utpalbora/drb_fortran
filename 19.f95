@@ -1,9 +1,10 @@
+ALLOCATE --> Array POINTER --> No SCOP
 program DRB19
 
 	implicit none
 	integer::i,inLen,outLen,number
-	integer,dimension(:),allocatable :: input
-	integer,dimension(:),allocatable :: output
+	integer,dimension(0:999) :: input
+	integer,dimension(0:999) :: output
 	
 	CHARACTER(LEN=20) :: buffer
 	
@@ -18,9 +19,6 @@ program DRB19
 		inLen = number
 	end if
 
-
-	allocate(input(inLen))
-	allocate(output(inLen))
 
 	do i=0,inLen-1
 		input(i)=i

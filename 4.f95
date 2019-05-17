@@ -1,3 +1,4 @@
+ALLOCATE --> Array POINTER --> No SCOP
 program DB4
 	
 	implicit none

@@ -1,11 +1,11 @@
 program DRB16
 	
 	implicit none
-	integer,dimension(100) :: a
-	integer::i,j,x,len
+	integer,dimension(0:99) :: a
+	integer::i,x,len
 	len=100
 	x=10
-	!$OMP PARALLEL DO private(j)	
+	!$OMP PARALLEL DO	
 	do i=0,len-1
 		a(i)=x
 		x=i

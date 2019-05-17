@@ -1,8 +1,10 @@
+ ALLOCATE --> Array POINTER --> No SCOP
+
 program DRB20
 
 	implicit none
 	integer :: i,tmp,len,number
-	integer,dimension(:),allocatable :: a
+	integer,dimension(0:99) :: a
 	CHARACTER(LEN=20) :: buffer
 
 	len =100
@@ -15,8 +17,6 @@ program DRB20
 		len = number
 	end if
 
-
-	allocate(a(len))
 
 	do i=0,len-1
 		a(i)=i

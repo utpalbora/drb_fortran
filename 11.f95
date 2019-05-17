@@ -2,7 +2,7 @@ program DB11
 
 	implicit none
 	integer::i,len,numNodes,numNodes2
-	integer,dimension(100)::x
+	integer,dimension(0:99)::x
 	len=100
 	numNodes=len
 	numNodes2=0
