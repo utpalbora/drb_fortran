@@ -1,16 +1,16 @@
 program DRB23
 
-	implicit none
-	integer :: i
-	i=0
+   implicit none
+   integer :: i
+   i = 0
 
-	!$omp sections	
-		!$omp section	
-			i=1
-		!$omp section
-			i=2
-	!$omp end sections
+!$OMP         sections
+!$OMP                 section
+   i = 1
+!$OMP                 section
+   i = 2
+!$OMP         end sections
 
-	print *,"i=",i        
-	
+   print *, "i=", i
+
 end program DRB23
