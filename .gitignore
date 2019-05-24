@@ -1,0 +1,6 @@
+*.ll
+*.dot
+*.out
+*.log
+pgipar*
+out

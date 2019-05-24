@@ -1,5 +1,5 @@
 #/bin/bash -x
-LOGFILE=log_`date +%Y-%m-%d-%H-%M`_verify
+LOGFILE=`date +%Y-%m-%d-%H-%M`_verify.log
 
 rm -f $LOGFILE
 touch $LOGFILE
@@ -11,5 +11,3 @@ for FILE in $(seq 1 $1); do
     echo "*******************" >> $LOGFILE
   fi
 done
-
-
