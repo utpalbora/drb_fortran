@@ -4,11 +4,10 @@ program DRB21
    integer :: i, j
    real :: temp, sum
    integer :: len
-   real, dimension(:, :), allocatable :: u
+   real, dimension(0:99, 0:99) :: u
 
    sum = 0.0
    len = 100
-   allocate (u(100, 100))
 
    do i = 1, len
       do j = 1, len

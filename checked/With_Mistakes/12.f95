@@ -1,4 +1,4 @@
-ALLOCATE - - > Array POINTER - - > No SCOP
+!ALLOCATE - - > Array POINTER - - > No SCOP
 program DB12
 
    implicit none

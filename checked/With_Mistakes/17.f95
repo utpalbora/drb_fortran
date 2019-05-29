@@ -1,4 +1,4 @@
-ALLOCATE - - > Array POINTER - - > No SCOP
+!ALLOCATE - - > Array POINTER - - > No SCOP
 program DRB17
 
    implicit none

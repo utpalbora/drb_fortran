@@ -1,12 +1,11 @@
 !ALLOCATE - - > Array POINTER - - > No SCOP
-program DB4
-
+program DB1
    implicit none
-   integer::i, j, len, number
-   double precision, dimension(:, :), allocatable :: a
+   integer::i, len, number
+   integer, dimension(0:999) :: a
    CHARACTER(LEN=20) :: buffer
 
-   len = 20
+   len = 1000
 
    buffer = ""
    CALL GET_COMMAND_ARGUMENT(1, buffer)
@@ -16,21 +15,17 @@ program DB4
       len = number
    end if
 
-   allocate (a(len, len))
-
    do i = 0, len - 1
-      do j = 0, len - 1
-         a(i, j) = 0.5
-      end do
+      a(i) = i
    end do
 
-!$OMP         PARALLEL DO private(j)
+!$OMP         PARALLEL DO
 
    do i = 0, len - 2
-      do j = 0, len - 1
-         a(i, j) = a(i + 1, j) + a(i, j)
-      end do
+      a(i) = a(i + 1) + 1
    end do
-!$OMP         end PARALLEL do
 
-end program DB4
+!$OMP         end PARALLEL do
+   print '("a[999]=",I0)', a(999)
+
+end program DB1

@@ -2,7 +2,7 @@ program DRB24
    implicit none
 
    integer :: i, len
-   integer, dimension(0:100) :: a, b
+   integer, dimension(0:99) :: a, b
 
    len = 100
    do i = 0, len - 1

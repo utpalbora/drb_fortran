@@ -1,6 +1,5 @@
- ALLOCATE - - > Array POINTER - - > No SCOP
-
- program DRB20
+! ALLOCATE - - > Array POINTER - - > No SCOP
+program DRB20
 
     implicit none
     integer :: i, tmp, len, number
@@ -28,4 +27,4 @@
     end do
 !$OMP         end PARALLEL do
 
- end program DRB20
+end program DRB20
