@@ -2,12 +2,11 @@ program DB111
 
    implicit none
    integer::i, j, len
-   double precision, dimension(:), allocatable :: a, b, c
+   double precision, dimension(0:99) :: a, b, c
 
    len = 100
    i = 0
    j = 0
-   allocate (a(0:len - 1), b(0:len - 1), c(0:len - 1))
 
    do i = 0, len - 1
       a(i) = real(i)/2.0

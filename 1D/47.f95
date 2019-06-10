@@ -1,7 +1,7 @@
 program DB47
 
    implicit none
-   character, dimension(0:99)::a
+   integer*1, dimension(0:99)::a
    integer :: i, j
 
 !$OMP         PARALLEL DO private(j)

@@ -10,7 +10,7 @@ program DRB33
 
 !$OMP         PARALLEL DO
 
-   do i = 1, 999
+   do i = 0, 999
       a(2*i + 1) = a(i) + 1
    end do
 !$OMP         end PARALLEL do

@@ -7,16 +7,15 @@ program DB11
    numNodes = len
    numNodes2 = 0
 
-   do i = 0, len - 1
-
-      if (modulo(i, 2) == 0) then
+   do i = 0, 99, 2
          x(i) = 5
-      else
-         x(i) = -5
-      end if
+   end do
+      
+   do i = 1, 99, 2
+      x(i) = -5
    end do
 
-!$OMP         PARALLEL DO
+      !$OMP         PARALLEL DO
 
    do i = numNodes - 1, 0, -1
       if (x(i) <= 0) then

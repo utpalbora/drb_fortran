@@ -2,21 +2,11 @@
 program DRB17
 
    implicit none
-   integer, dimension(:), allocatable :: a
+   integer, dimension(0:99):: a
    integer::i, j, x, len, number
    CHARACTER(LEN=20) :: buffer
 
    len = 100
-
-   buffer = ""
-   CALL GET_COMMAND_ARGUMENT(1, buffer)
-   read (buffer, '(I10)') number
-
-   if (COMMAND_ARGUMENT_COUNT() > 0) then
-      len = number
-   end if
-
-   allocate (a(len))
 
    x = 10
 !$OMP         PARALLEL DO private(j)

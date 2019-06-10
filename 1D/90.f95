@@ -3,9 +3,8 @@ program DRB90
    implicit none
    integer :: i, len = 100, tmp, tmp2
    save ::tmp
-   integer, dimension(:), allocatable :: a, b
+   integer, dimension(0:99)  :: a, b
 
-   allocate (a(0:len - 1), b(0:len - 1))
 
    do i = 0, len - 1
       a(i) = i

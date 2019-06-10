@@ -4,17 +4,9 @@ program DB12
    implicit none
    integer::i, len, number, numNodes, numNodes2
    integer, dimension(0:99)::x
-   CHARACTER(LEN=20) :: buffer
 
    len = 100
 
-   buffer = ""
-   CALL GET_COMMAND_ARGUMENT(1, buffer)
-   read (buffer, '(I10)') number
-
-   if (COMMAND_ARGUMENT_COUNT() > 0) then
-      len = number
-   end if
 
    numNodes = len
    numNodes2 = 0
