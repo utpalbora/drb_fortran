@@ -7,7 +7,8 @@ touch $LOGFILE
 for FILE in $(seq 1 $1); do
   if [ -f "$FILE.f95" ]; then
     echo "$FILE.f95" >> $LOGFILE
-    bash $ROOT_DIR/verifySingpleFile.sh $FILE.f95 2>&1 | tee -a $LOGFILE
+    bash $ROOT_DIR/verifySingpleFileO1.sh $FILE.f95 2>&1 | tee -a $LOGFILE
     echo "*******************" >> $LOGFILE
   fi
 done
+echo "logs written in ${LOGFILE}"
