@@ -1,6 +1,6 @@
 #/bin/bash -x
 LOGFILE=`date +%Y-%m-%d-%H-%M`_verify.log
-ROOT_DIR=/home/cs15btech11029/OmpVerifier/drb_fortran
+ROOT_DIR=`pwd`
 rm -f $LOGFILE
 touch $LOGFILE
 
