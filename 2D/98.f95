@@ -2,8 +2,7 @@ program DB99
 
    implicit none
    integer::i, j, len = 100
-   double precision, dimension(:, :), allocatable::a, b, c
-   allocate (a(0:len - 1, 0:len - 1), b(0:len - 1, 0:len - 1), c(0:len - 1, 0:len - 1))
+   double precision, dimension(0:99, 0:99) ::a, b, c
 
    do i = 0, len - 1
       do j = 0, len - 1

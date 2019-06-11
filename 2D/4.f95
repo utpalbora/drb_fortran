@@ -1,22 +1,10 @@
-!ALLOCATE - - > Array POINTER - - > No SCOP
 program DB4
 
    implicit none
    integer::i, j, len, number
-   double precision, dimension(:, :), allocatable :: a
-   CHARACTER(LEN=20) :: buffer
+   double precision, dimension(0:19, 0:19) :: a
 
    len = 20
-
-   buffer = ""
-   CALL GET_COMMAND_ARGUMENT(1, buffer)
-   read (buffer, '(I10)') number
-
-   if (COMMAND_ARGUMENT_COUNT() > 0) then
-      len = number
-   end if
-
-   allocate (a(len, len))
 
    do i = 0, len - 1
       do j = 0, len - 1

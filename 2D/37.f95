@@ -1,8 +1,12 @@
 program DRB37
-
    implicit none
    integer::i, j, n, m
    double precision, dimension(0:999, 0:999) :: b
+   do i = 0, 999
+     do j = 0, 999
+       b(i,j) = 10
+     end do
+   end do
 
    do i = 0, n - 1
 !$OMP         PARALLEL DO

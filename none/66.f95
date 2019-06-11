@@ -3,14 +3,7 @@ subroutine setup(N)
    implicit none
    integer, intent(in)::N
    integer :: i
-   double precision :: d
-   real*16 ::m_pdv_sum(*)
-   real*16 ::m_nvol(*)
-   pointer(x, m_pdv_sum)
-   pointer(y, m_nvol)
-
-   x = malloc(N*16)
-   y = malloc(N*16)
+   real*4, dimension(0:N*16-1) ::m_pdv_sum, m_nvol
 
 !$OMP         parallel do schedule(static)
    do i = 1, N
@@ -19,8 +12,6 @@ subroutine setup(N)
    end do
 !$OMP         end parallel do
 
-   call free(x)
-   call free(y)
 end subroutine setup
 
 program DB66

@@ -2,11 +2,10 @@ program DRB54
 
    implicit none
    integer::i, j, n, m
-   double precision, dimension(:, :), allocatable :: b
+   double precision, dimension(0:99, 0:99) :: b
 
    n = 100
    m = 100
-   allocate (b(0:n - 1, 0:m - 1))
 
    do i = 0, n - 1
       do j = 0, m - 1

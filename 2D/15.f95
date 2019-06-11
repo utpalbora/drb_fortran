@@ -1,20 +1,8 @@
-!ALLOCATE - - > Array POINTER - - > No SCOP
 program DRB15
-
    implicit none
    integer::i, j, n, m, len, number
    double precision, dimension(0:99, 0:99):: b
-   CHARACTER(LEN=20) :: buffer
-
    len = 100
-
-   buffer = ""
-   CALL GET_COMMAND_ARGUMENT(1, buffer)
-   read (buffer, '(I10)') number
-
-   if (COMMAND_ARGUMENT_COUNT() > 0) then
-      len = number
-   end if
    n = len
    m = len
 
