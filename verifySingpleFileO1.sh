@@ -8,7 +8,7 @@ FILE=`basename $1 .f95`
 LLVM_BUILD=/home/cs15btech11029/OmpVerifier/build
 FLANG_PATH=/mnt/OldExtra/Utpal/Flang/install/bin
 
-$FLANG_PATH/flang -fopenmp -S -emit-llvm  $FILE.f95 -o $FILE.ll
+$FLANG_PATH/flang -fopenmp  -S -emit-llvm  $FILE.f95 -o $FILE.ll
 if [ $? -ne 0 ]; then
 	echo "Flang failed for $FILE.f95"
 	exit
