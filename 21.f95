@@ -3,21 +3,20 @@ program DRB21
    implicit none
    integer :: i, j
    real :: temp, sum
-   integer :: len
+   integer,parameter :: len=100
    real, dimension(0:99, 0:99) :: u
 
    sum = 0.0
-   len = 100
 
-   do i = 1, len
-      do j = 1, len
+   do i = 0, len-1
+      do j = 0, len-1
          u(i, j) = 0.5
       end do
    end do
 
 !$OMP         PARALLEL DO private(temp,i,j)
-   do i = 1, len
-      do j = 1, len
+   do i = 0, len-1
+      do j = 0, len-1
          temp = u(i, j)
          sum = sum + temp*temp
       end do

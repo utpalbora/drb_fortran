@@ -4,8 +4,8 @@ program DRB18
    integer, dimension(0:999) :: input
    integer, dimension(0:999) :: output
 
-   integer::i, inLen, outLen
-   inLen = 1000
+   integer::i, outLen
+   integer, parameter :: inlen=1000
    outLen = 0
 
    do i = 0, inLen - 1

@@ -5,7 +5,7 @@ subroutine setup(N)
    integer :: i
    real*4, dimension(0:N*16-1) ::m_pdv_sum, m_nvol
 
-!$OMP         parallel do schedule(static)
+!$OMP         parallel do schedule(static) private(N)
    do i = 1, N
       m_pdv_sum(i) = 0.0
       m_nvol(i) = (i - 1)*2.5

@@ -3,11 +3,11 @@ program DRB22
    implicit none
    integer :: i, j
    real :: temp, sum
-   integer :: len, number
+   integer, parameter :: len=100
+   integer ::  number
    real, dimension(0:99, 0:99) :: u
 
    sum = 0.0
-   len = 100
 
 
    do i = 0, len-1
