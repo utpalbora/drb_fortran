@@ -2,5 +2,7 @@
 *.dot
 *.out
 *.log
+*.csv
 pgipar*
 out
+results
