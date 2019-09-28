@@ -1,6 +1,8 @@
 # DataRaceBench FORTRAN kernels
 
-These are DataRaceBench 1.2 kernels re-written in FORTRAN in order to work on LLVM-IR based OpenMP data race detection tools.
+These are [DataRaceBench](https://github.com/llnl/dataracebench) 1.2 kernels re-written in FORTRAN in order to work on LLVM-IR based OpenMP data race detection tools.  
+There are 92 kernels in total, covering different pragmas of OpenMP version 4.5.  
+We plan to implement all 116 kernels of DataRaceBench v1.2.  
 
 ## Current Status of DataRaceBench FORTRAN kernels
 | id  | DataRaceBench v1.2 kernel  | Have race?  | DataRaceBench FORTRAN  | Flang Support  |
