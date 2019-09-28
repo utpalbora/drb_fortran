@@ -22,6 +22,7 @@ function exitTest {
   fi
 }
 
+timerStart=$(date +%s%6N)
 $FLANG_PATH/flang -fopenmp -S -emit-llvm "$TEST" -o "$FILE.ll"
 exitTest $?
 
@@ -36,6 +37,9 @@ $LLOV_BUILD/bin/opt -load $LLOV_BUILD/lib/OpenMPVerify.so \
   -polly-dependences-on-demand -disable-output \
   -openmp-verify \
   "$FILE.resetbounds.ll" 2>&1 | tee "$LOGFILE"
+timerEnd=$(date +%s%6N)
+totalTime=$(echo "scale=3; ($timerEnd-$timerStart)/1000000"|bc)
+echo "Total Time Taken : $totalTime" | tee -a "$LOGFILE"
 
 if [ ! -z $CLEAR ]; then
   rm -rf "$FILE.resetbounds.ll" "$FILE.ssa.ll" "$FILE.ll"
