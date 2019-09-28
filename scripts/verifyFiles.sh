@@ -15,6 +15,7 @@ for FILE in $(ls $ROOT_DIR/micro-benchmarks/*.f95); do
   if [ -f $FILE ]; then
     echo $FILE | tee -a $LOGFILE
     $ROOT_DIR/scripts/verifySingpleFile.sh $FILE 1 2>&1 | tee -a $LOGFILE
+    #$ROOT_DIR/scripts/singleFilePollyScops.sh $FILE 1 2>&1 | tee -a $LOGFILE #SCoPs
     echo "*******************" >> $LOGFILE
   fi
 done

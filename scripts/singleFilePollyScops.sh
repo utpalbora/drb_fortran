@@ -1,14 +1,35 @@
-echo $1
-FILE=`basename $1 .f95`
-LLVM_BUILD=/home/cs15btech11029/OmpVerifier/build
-FLANG_PATH=/mnt/OldExtra/Utpal/Flang/install/bin
+#!/bin/bash
+LLOV_BUILD=/home/utpal/Work/LLVMOMPVerify/build
+FLANG_PATH=/home/utpal/installs/flang-2019-09-04/bin
 
-$FLANG_PATH/flang -fopenmp  -S -emit-llvm  $FILE.f95 -o $FILE.ll
-if [ $? -ne 0 ]; then
-	echo "Flang failed for $FILE.f95"
-	exit
+TEST=$1
+CLEAR=$2
+FILENAME=$(basename $TEST)
+FILENAME=${FILENAME%.*}
+OUT_DIR="results"
+FILE=$OUT_DIR/$FILENAME
+
+function exitTest {
+  if [ $1 -ne 0 ]; then
+    echo "Flang failed for $TEST"
+    exit 1
+  fi
+}
+
+$FLANG_PATH/flang -fopenmp -S -emit-llvm "$TEST" -o "$FILE.ll"
+exitTest $?
+$LLOV_BUILD/bin/opt -mem2reg -O1 "$FILE.ll" -S -o "$FILE.ssa.ll" > /dev/null 2>&1
+exitTest $?
+$LLOV_BUILD/bin/opt -load $LLOV_BUILD/lib/OpenMPVerify.so \
+  -openmp-resetbounds "$FILE.ssa.ll" -S -o "$FILE.resetbounds.ll" > /dev/null 2>&1
+exitTest $?
+$LLOV_BUILD/bin/opt -load $LLOV_BUILD/lib/OpenMPVerify.so \
+  -polly-detect-fortran-arrays -polly-process-unprofitable \
+  -polly-invariant-load-hoisting -polly-ignore-parameter-bounds \
+  -polly-scops -polly-dependences \
+  -analyze -pass-remarks-missed=polly-detect \
+  "$FILE.resetbounds.ll"
+
+if [ ! -z $CLEAR ]; then
+  rm -rf "$FILE.resetbounds.ll" "$FILE.ssa.ll" "$FILE.ll"
 fi
-$LLVM_BUILD/bin/opt  -mem2reg -O1 $FILE.ll -S -o $FILE.ssa.ll
-$LLVM_BUILD/bin/opt  -load $LLVM_BUILD/lib/OpenMPVerify.so  -openmp-resetbounds $FILE.ssa.ll -S -o $FILE.resetbounds.ll
-$LLVM_BUILD/bin/opt  -load $LLVM_BUILD/lib/OpenMPVerify.so  -polly-process-unprofitable -polly-invariant-load-hoisting --analyze -polly-scops -polly-dependences -pass-remarks-missed=polly-detect $FILE.resetbounds.ll
-
