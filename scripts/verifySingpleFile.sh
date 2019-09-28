@@ -25,19 +25,18 @@ function exitTest {
 $FLANG_PATH/flang -fopenmp -S -emit-llvm "$TEST" -o "$FILE.ll"
 exitTest $?
 
-$LLOV_BUILD/bin/opt -mem2reg -O1 "$FILE.ll" -S -o "$FILE.ssa.ll" > /dev/null 2>&1
+$LLOV_BUILD/bin/opt -mem2reg -O1 "$FILE.ll" -S -o "$FILE.ssa.ll" 2>&1
 exitTest $?
 $LLOV_BUILD/bin/opt -load $LLOV_BUILD/lib/OpenMPVerify.so \
-  -openmp-resetbounds "$FILE.ssa.ll" -S -o "$FILE.resetbounds.ll" > /dev/null 2>&1
+  -openmp-resetbounds "$FILE.ssa.ll" -S -o "$FILE.resetbounds.ll" 2>&1
 exitTest $?
 $LLOV_BUILD/bin/opt -load $LLOV_BUILD/lib/OpenMPVerify.so \
   -polly-detect-fortran-arrays -polly-process-unprofitable \
   -polly-invariant-load-hoisting -polly-ignore-parameter-bounds \
   -polly-dependences-on-demand -disable-output \
   -openmp-verify \
-  "$FILE.resetbounds.ll" > "$LOGFILE" 2>&1
+  "$FILE.resetbounds.ll" 2>&1 | tee "$LOGFILE"
 
 if [ ! -z $CLEAR ]; then
   rm -rf "$FILE.resetbounds.ll" "$FILE.ssa.ll" "$FILE.ll"
 fi
-
