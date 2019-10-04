@@ -20,3 +20,5 @@ for FILE in $(ls $ROOT_DIR/micro-benchmarks/*.f95); do
   fi
 done
 echo "logs written in ${LOGFILE}"
+
+$ROOT_DIR/scripts/generateCSV.sh
