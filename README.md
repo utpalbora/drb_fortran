@@ -4,6 +4,30 @@ These are [DataRaceBench](https://github.com/llnl/dataracebench) 1.2 kernels re-
 There are 92 kernels in total, covering different pragmas of OpenMP version 4.5.  
 We plan to implement all 116 kernels of DataRaceBench v1.2.  
 
+## Running Data Race Checkers
+
+```
+./scripts/detect-races.sh -x toolname
+-x : tool name (llov, drd, helgrind)
+-n : iteration count
+-t : thread count
+-s : timeout in seconds
+```
+
+To run llov 5 times, execute  
+`./scripts/detect-races.sh -x llov -n 5`
+
+To run multiple tools, execute  
+`./scripts/detect-races.sh -x llov -x drd -x helgrind -n 1 -t 8 -s 10`  
+
+To run the complete experiments, execute  
+`./scripts/detect-races.sh`  
+
+After running the experiments, to generate the consolidated reports (Stats.csv, TP-Stats.csv), execute
+`python scripts/drb_fortran.py`  
+
+Results are stored at `results` directory.
+
 ## Authors
 
 DataRaceBench FORTRAN was created by Utpal Bora, Himanshu Shukla, and Pankaj Kukreja.
@@ -146,3 +170,4 @@ the files LICENSE.LLNL.txt and LICENSE.OSU.txt.
 |114| DRB114-if-orig-yes.c | TRUE | [DRBF114_yes.f95](micro-benchmarks/DRBF114_yes.f95) |  |
 |115| DRB115-forsimd-orig-yes.c | TRUE | [DRBF115_yes.f95](micro-benchmarks/DRBF115_yes.f95) |  |
 |116| DRB116-target-teams-orig-yes.c | TRUE | [DRBF116_yes.f95](micro-benchmarks/DRBF116_yes.f95) |  |
+``
