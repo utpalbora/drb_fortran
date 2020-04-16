@@ -4,6 +4,26 @@ These are [DataRaceBench](https://github.com/llnl/dataracebench) 1.2 kernels re-
 There are 92 kernels in total, covering different pragmas of OpenMP version 4.5.  
 We plan to implement all 116 kernels of DataRaceBench v1.2.  
 
+## Authors
+
+DataRaceBench FORTRAN was created by Utpal Bora, Himanshu Shukla, and Pankaj Kukreja.
+
+## Release
+
+DataRaceBench FORTRAN is released under a BSD license. For more details see
+the file LICENSE.txt.
+The license of the original C/C++ version of the benchmark can be found in
+the files LICENSE.LLNL.txt and LICENSE.OSU.txt.
+
+## How to cite DataRaceBench FORTRAN in a publication
+@misc{drbForturl,
+  author = {Kukreja, Pankaj and Shukla, Himanshu and Bora, Utpal},
+  title = {{DataRaceBench FORTRAN}},
+  howpublished = "\url{https://github.com/IITH-Compilers/drb_fortran}",
+  year = {2019},
+  note = "[Online; accessed 19-October-2019]"
+}
+
 ## Current Status of DataRaceBench FORTRAN kernels
 | id  | DataRaceBench v1.2 kernel  | Have race?  | DataRaceBench FORTRAN  | Flang Support  |
 |:-:|:-:|:-:|:-:|:-:|
