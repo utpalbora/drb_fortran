@@ -13,7 +13,7 @@ BACKUP_DIR=$LOG_DIR/$(date +%Y-%m-%d-%H-%M)
 #export OMP_DISPLAY_ENV="VERBOSE" #TRUE, FALSE, & VERBOSE
 
 TIMEOUTCMD=${TIMEOUTCMD:-"timeout"}
-RUNCMD=${RUNCMD:-"/home/utpal/Work/runsolver/src/runsolver"}
+RUNCMD=${RUNCMD:-"./runsolver/runsolver"}
 VALGRIND=${VALGRIND:-"valgrind"}
 VALGRIND_COMPILE_FLAGS="-g -fopenmp"
 
