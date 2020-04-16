@@ -17,13 +17,15 @@ the files LICENSE.LLNL.txt and LICENSE.OSU.txt.
 
 ## How to cite DataRaceBench FORTRAN in a publication
 
-``@misc{drbForturl,  
+```
+@misc{drbForturl,  
   author = {Kukreja, Pankaj and Shukla, Himanshu and Bora, Utpal},  
   title = {{DataRaceBench FORTRAN}},  
   howpublished = "\url{https://github.com/utpalbora/drb_fortran}",  
   year = {2019},  
   note = "[Online; accessed 19-October-2019]"  
-}``  
+}
+```
 
 ## Current Status of DataRaceBench FORTRAN kernels
 | id  | DataRaceBench v1.2 kernel  | Have race?  | DataRaceBench FORTRAN  | Flang Support  |
