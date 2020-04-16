@@ -23,7 +23,7 @@ To run multiple tools, execute
 To run the complete experiments, execute  
 `./scripts/detect-races.sh`  
 
-After running the experiments, to generate the consolidated reports (Stats.csv, TP-Stats.csv), execute
+After running the experiments, to generate the consolidated reports (Stats.csv, TP-Stats.csv), execute  
 `python scripts/drb_fortran.py`  
 
 Results are stored at `results` directory.
