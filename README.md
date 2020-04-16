@@ -16,6 +16,8 @@ The license of the original C/C++ version of the benchmark can be found in
 the files LICENSE.LLNL.txt and LICENSE.OSU.txt.
 
 ## How to cite DataRaceBench FORTRAN in a publication
+
+---
 @misc{drbForturl,
   author = {Kukreja, Pankaj and Shukla, Himanshu and Bora, Utpal},
   title = {{DataRaceBench FORTRAN}},
@@ -23,6 +25,7 @@ the files LICENSE.LLNL.txt and LICENSE.OSU.txt.
   year = {2019},
   note = "[Online; accessed 19-October-2019]"
 }
+---
 
 ## Current Status of DataRaceBench FORTRAN kernels
 | id  | DataRaceBench v1.2 kernel  | Have race?  | DataRaceBench FORTRAN  | Flang Support  |
