@@ -20,14 +20,18 @@ VALGRIND_COMPILE_FLAGS="-g -fopenmp"
 TSAN_COMPILE_FLAGS="-fopenmp -fopenmp-version=45 -fsanitize=thread -g"
 
 FLANG_PATH=/home/utpal/installs/flang-2019-10-04
+FLANG_FLAGS+=" -disable-O0-optnone"
+FLANG_FLAGS+=" -fopenmp -fopenmp-version=45"
+FLANG_FLAGS+=" -g"
 LLOV_COMPILER="/home/utpal/Work/LLVMOMPVerify/build"
 LLOV_COMPILE_FLAGS=" $LLOV_COMPILER/lib/OpenMPVerify.so"
-LLOV_COMPILE_FLAGS+=" -disable-O0-optnone"
-LLOV_COMPILE_FLAGS+=" -fopenmp -fopenmp-version=45"
 LLOV_COMPILE_FLAGS+=" -polly-process-unprofitable"
 LLOV_COMPILE_FLAGS+=" -polly-invariant-load-hoisting"
 LLOV_COMPILE_FLAGS+=" -polly-ignore-parameter-bounds"
 LLOV_COMPILE_FLAGS+=" -polly-dependences-on-demand"
+LLOV_COMPILE_FLAGS+=" -polly-precise-fold-accesses"
+#LLOV_COMPILE_FLAGS+=" -openmp-verify-disable-aa"
+
 
 ARCHER=${ARCHER:-"clang-archer"}
 ARCHER_COMPILE_FLAGS="-larcher -fopenmp-version=45"
@@ -163,11 +167,12 @@ for ITER in $(seq 1 "$ITERATIONS"); do
         llov)       $FLANG_PATH/bin/flang -fopenmp -S -emit-llvm "$test" -o "$exname.ll";
                     $LLOV_COMPILER/bin/opt -mem2reg -O1 "$exname.ll" -S -o "$exname.ssa.ll";
                     $LLOV_COMPILER/bin/opt -load $LLOV_COMPILER/lib/OpenMPVerify.so \
-                        -openmp-resetbounds "$exname.ssa.ll" -S -o "$exname.resetbounds.ll";
+                        -openmp-resetbounds "$exname.ssa.ll" -inline -S -o "$exname.resetbounds.ll";
                     $RUNCMD -W $TIMEOUTSEC $OUTFLAGS $LLOV_COMPILER/bin/opt -load $LLOV_COMPILER/lib/OpenMPVerify.so \
                         -polly-detect-fortran-arrays -polly-process-unprofitable \
                         -polly-invariant-load-hoisting -polly-ignore-parameter-bounds \
-                        -polly-dependences-on-demand -disable-output \
+                        -polly-dependences-on-demand -polly-precise-fold-accesses \
+                        -disable-output \
                         -openmp-verify \
                         "$exname.resetbounds.ll";
                     rm -f $exname.ll $exname.ssa.ll $exname.resetbounds.ll;;

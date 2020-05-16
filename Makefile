@@ -7,3 +7,4 @@ clean:
 	@rm -f *.cmdx
 	@rm -f *.ilm
 	@rm -f *.stb
+	@rm -f *.dbg
