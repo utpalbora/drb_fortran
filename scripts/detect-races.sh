@@ -19,11 +19,11 @@ VALGRIND_COMPILE_FLAGS="-g -fopenmp"
 
 TSAN_COMPILE_FLAGS="-fopenmp -fopenmp-version=45 -fsanitize=thread -g"
 
-FLANG_PATH=/home/utpal/installs/flang-2019-10-04
+FLANG_PATH=/home/utpal/installs/flang-2020-05-11
 FLANG_FLAGS+=" -disable-O0-optnone"
 FLANG_FLAGS+=" -fopenmp -fopenmp-version=45"
 FLANG_FLAGS+=" -g"
-LLOV_COMPILER="/home/utpal/Work/LLVMOMPVerify/build"
+LLOV_COMPILER="/home/utpal/Work/LLVMOmpVerify/build"
 LLOV_COMPILE_FLAGS=" $LLOV_COMPILER/lib/OpenMPVerify.so"
 LLOV_COMPILE_FLAGS+=" -polly-process-unprofitable"
 LLOV_COMPILE_FLAGS+=" -polly-invariant-load-hoisting"
@@ -167,7 +167,7 @@ for ITER in $(seq 1 "$ITERATIONS"); do
         llov)       $FLANG_PATH/bin/flang -fopenmp -S -emit-llvm "$test" -o "$exname.ll";
                     $LLOV_COMPILER/bin/opt -mem2reg -O1 "$exname.ll" -S -o "$exname.ssa.ll";
                     $LLOV_COMPILER/bin/opt -load $LLOV_COMPILER/lib/OpenMPVerify.so \
-                        -openmp-resetbounds "$exname.ssa.ll" -inline -S -o "$exname.resetbounds.ll";
+                        -openmp-forceinline -inline -openmp-resetbounds "$exname.ssa.ll" -S -o "$exname.resetbounds.ll";
                     $RUNCMD -W $TIMEOUTSEC $OUTFLAGS $LLOV_COMPILER/bin/opt -load $LLOV_COMPILER/lib/OpenMPVerify.so \
                         -polly-detect-fortran-arrays -polly-process-unprofitable \
                         -polly-invariant-load-hoisting -polly-ignore-parameter-bounds \
